@@ -1,0 +1,222 @@
+\documentclass[border=0pt]{standalone}
+\usepackage{tikz,filecontents, pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{amsmath,bm}
+\usepgfplotslibrary{units,fillbetween,groupplots,colorbrewer,colormaps}
+\usetikzlibrary{pgfplots.colorbrewer}
+\pgfplotsset{compat=newest,
+	every axis/.style = {
+		%scale only axis,
+		width=7cm,height=6cm,
+		line width = 0.7pt,
+		tick style = {line width=0.7pt,black},
+		ticklabel style={scale=0.8},
+		major tick length = 1.5mm,
+		minor tick length = 0.75mm,
+		minor x tick num=1,
+		minor y tick num=1,
+        xtick pos=left,
+		xlabel style={scale=0.9},
+		ylabel style={scale=0.9},
+		zlabel style={scale=0.9},
+		%xlabel={Photon energy (eV)}, 
+	   	xticklabel style={
+	   	/pgf/number format/precision=2,
+	   	/pgf/number format/fixed,
+	   	/pgf/number format/fixed zerofill,
+	   },
+	   yticklabel style={
+	   	/pgf/number format/precision=2,
+	   	/pgf/number format/fixed,
+	   	/pgf/number format/fixed zerofill,
+	   },
+	},
+	every axis plot/.style={smooth,mark=*,mark options={scale=0.7,fill=white,line width=0.5pt},line width=0.5pt},
+	/pgfplots/legend image code/.code={%
+		\draw[mark repeat=1,mark phase=1,#1] 
+		plot coordinates {
+			(0cm,0cm) 
+			(0.0cm,0cm)
+			(0.0cm,0cm)
+			(0.0cm,0cm)
+			(0.3cm,0cm)%
+		};
+	},
+}
+\pgfplotsset{every axis legend/.style={
+		cells={anchor=center},
+		inner xsep=1pt,
+		inner ysep=1pt,
+		nodes={scale=1,inner sep=2pt, transform shape},
+		draw=none,
+		at={(0,1)},
+		anchor=north west,
+	}
+}
+
+\begin{document}
+\begin{tikzpicture}
+
+\newcommand{\samplepAn}{M4\_3140}
+\newcommand{\sampleAn}{M4\_3521}
+\newcommand{\sampleAp}{M4\_3522}
+\newcommand{\sampleSn}{M4\_3523}
+
+\def\hhu{1.5190}
+\def\lhu{1.5210}
+
+\def\hhd{1.5330}
+\def\lhd{1.5394}
+
+\def\hht{1.5461}
+
+
+
+\begin{axis}[%
+scale only axis,
+name = rd,
+ymin=-3e-4, ymax=6.1e-4,
+xmin =1.50,xmax=1.55,
+ytick=\empty,
+xlabel ={ Photon Energy (eV) },
+ylabel ={},
+]
+
+%================================= Add Data ===================================
+
+\pgfplotstableread[col sep=comma]{./data/ras-m43521-l4.dat}{\ru};
+\pgfplotstableread[col sep=comma]{./data/ras-m43521-3l4.dat}{\rd};
+
+%=================================== Plot ======================================
+
+
+
+%============================== RDS -M4_3521
+\addplot[color=Set1-D] table[x index=0, y index=1]{\ru};
+\addlegendentry[yshift = -0.3mm]{RAS $\sigma^{+}$};
+
+\addplot[color=Set1-A] table[x index=0, y expr={\thisrowno{1}}]{\rd};
+\addlegendentry[yshift = -0.3mm]{RAS $\sigma^{-}$};
+
+
+% %\node[scale=1.3] (E1) at (axis cs:\hhu-3e-3,-1e-3) {$E_{1}$};
+% %\node[scale=1.3] (E2) at (axis cs:\hhd+2e-3,-0.38e-3) {$E_{2}$};
+% \node[scale=1.3] (H1) at (axis cs:1.51766,-1.2e-3) {};
+% \node[scale=1.3] (L1) at (axis cs:1.52023,-2e-3) {};
+% \node[scale=1.3] (H2) at (axis cs:1.5345,-0.1e-3) {};
+% \node[scale=1.3] (L2) at (axis cs:1.54003,-0.22e-3) {};
+% \draw[arrow] (H1) -- (axis cs:1.51766,-1.8e-3) |- (axis cs:1.52023,-2.2e-3) -| (L1) ;
+% \draw[arrow] (H2) -- (axis cs:1.5345,-0.4e-3) |- (axis cs:1.54003,-0.4e-3) -| (L2) ;
+
+% \node[scale=2] at (axis cs:1.54,0.75e-3) {(a) $\mathrm{A2}$};
+% \node[scale=2] at (axis cs:1.54,-1e-3) {(b) $\mathrm{A3}$};
+
+
+
+% \dimline[color= black,
+% line style = {line width=0.7},
+% extension start length=0.3, 
+% extension end length=0.3,
+% label style = {rotate=-90,midway,scale=1.3},
+% ] {(axis cs:1.51,2e-4)}{(axis cs: 1.51,7e-4)}{ $5\!\times\!10^{-4}$ };
+
+%============================== RDS -M4_3522
+
+
+
+%\addplot[smooth,mark=*] table[x index=0, y expr={\thisrowno{3}}]{\RDSAp};
+%\addlegendentry[yshift = -0.3mm,opacity = 1]{RDS};
+%
+%
+%\node[scale=1.6] at (axis cs:1.54,0.5e-3) {(b) M4\_3522};
+
+%============================== R -M4_3522
+
+
+
+% \addplot[smooth,line width=2pt] table[x index=0, y expr={\thisrowno{6}}]{\DRn};
+% \addlegendentry[yshift = -0.3mm]{DR n-type};
+
+% \node[scale=1.2,text width = 1em,inner sep = 2pt,transform canvas={xshift=1mm}] (S1H1) at (axis cs:\hhu,1.1e-3) {\teh} edge [-{Stealth[scale=0.8]}] (axis cs:\hhu,0.7e-3);
+
+% \node[scale=1.2,text width = 1em,inner sep = 2pt,transform canvas={xshift=0mm}] (S1H1) at (axis cs:\lhu,0.8e-3) {\telh} edge [-{Stealth[scale=0.8]}] (axis cs:\lhu,0.5e-3);
+
+
+% \node[scale=1.2,text width = 1em,inner sep = 2pt,transform canvas={xshift=-2.5mm}] (S1H1) at (axis cs:\hhd,0.9e-3) {\tehh} edge [-{Stealth[scale=0.8]}] (axis cs:\hhd,0.6e-3);
+
+% \node[scale=1.2,text width = 1em,inner sep = 2pt,transform canvas={xshift=-2.5mm}] (S1H1) at (axis cs:\lhd,0.4e-3) {\telhh} edge [-{Stealth[scale=0.8]}] (axis cs:\lhd,0.1e-3);
+
+% \node[scale=1.2,text width = 1em,inner sep = 2pt,transform canvas={xshift=-2.5mm}] (S1H1) at (axis cs:\hht,0.6e-3) {\tehhh} edge [-{Stealth[scale=0.8]}] (axis cs:\hht,0.3e-3);
+
+%en1
+%\node[scale=1.3,text width = 1em,inner sep = 2pt] (S1H1) at (axis cs:1.5380,3e-3) {$L_{11}$} edge [-{Stealth[scale=0.8]}] (axis cs:1.5380,2.5e-3);
+
+\node[scale=1.4] at (axis cs: 1.545,1.1e-3) {T=30K};
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+\end{axis} 	
+
+%\begin{axis}[
+%opacity=0,
+%anchor=north west,at={(rd.north west)},
+%scale only axis,
+%height=3cm,
+%width= 8cm,
+%xmin = 1.517,xmax=1.542,
+%ymin = 0,
+%minor x tick num=1,
+%ytick=\empty,
+%xtick pos=right,
+%%%%========================= legend ================================
+%x tick label style={
+%	/pgf/number format/.cd,
+%	fixed,
+%	fixed zerofill,
+%	precision=3,
+%	/tikz/.cd
+%},
+%%%%=========================== Labels ================================
+%%xlabel style = {font=\fontsize{5}{1}\selectfont},
+%xlabel ={Photon Energy (eV)  },
+%ylabel ={PL (arb. units)},
+%every axis x label/.style= {at={(axis description cs:0.5,1.25)},scale=1.2},
+%every axis y label/.style= {at={(axis description cs:-0.05,0.5)},rotate=90,scale=1.2},
+%every major tick/.append style={major tick length=2mm},
+%every minor tick/.append style={major tick length=1mm},
+%every axis/.append style = {
+%	line width = 0.75pt,
+%	tick style = {line width=0.75pt,black},},
+%		every tick label/.append style={scale=0.8},
+%]
+%%%
+%%%%================================= Add Data ===================================
+%\pgfplotstableread[col sep=comma]{/mnt/d/OneDrive - Universidad Autonoma de San Luis Potosi - UASLP/Documentos/RUCO/ANALISIS/M4_3523/DATA/PL-M4_3523.dat}{\PLSn};
+%\pgfplotstableread[col sep=comma]{/mnt/d/OneDrive - Universidad Autonoma de San Luis Potosi - UASLP/Documentos/RUCO/ANALISIS/M4_3140/DATA/PL-M4_3140.dat}{\PLpAn};
+%\pgfplotstableread[col sep=comma]{/mnt/d/OneDrive - Universidad Autonoma de San Luis Potosi - UASLP/Documentos/RUCO/ANALISIS/M4_3521/DATA/PL-M4_3521.dat}{\PLAn};
+%%%
+%%%%=================================== Plot ======================================
+%\addplot[smooth,black] table[x index=0,y index=1]{\PLSn};
+%\addplot[smooth,black] table[x index=0,y index=2]{\PLpAn};
+%\addplot[smooth,black] table[x index=0,y index=1]{\PLAn};
+%
+%
+%%Draw Rows
+%%\node[scale=1.3,text width = 1em,inner sep = 2pt] (S1H1) at (axis cs:1.5328,2) {$H_{11}$} edge [-{Stealth[scale=0.8]}] (axis cs:1.5328,1);
+%
+%
+%
+%%\node[scale=1.3,text width = 1em,inner sep = 2pt] (S1H1) at (axis cs:1.5265,2) {$H_{11}$} edge [-{Stealth[scale=0.8]}] (axis cs:1.5265,1);
+%
+%%\node[scale=1.3,text width = 1em,inner sep = 2pt,transform canvas={xshift=-2mm}] (S1H1) at (axis cs:1.5181,2) {$H_{11}$} edge [-{Stealth[scale=0.8]}] (axis cs:1.5181,1);
+%%\node[scale=1.3,text width = 1em,inner sep = 2pt] (S1H1) at (axis cs:1.5380,3e-3) {$L_{11}$} edge [-{Stealth[scale=0.8]}] (axis cs:1.5380,2.5e-3);
+%
+%
+%\node[scale=1.6] at (axis cs:1.522,2.7) {(a) };
+%\node[scale=1.6] at (axis cs:1.531,2.7) {(b) };
+%\node[scale=1.6] at (axis cs:1.537,2.7) {(c) };
+%\end{axis} 	
+%
+\end{tikzpicture}
+\end{document}
