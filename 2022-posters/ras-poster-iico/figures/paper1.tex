@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc}
+\newsavebox\mysavebox
+
+\begin{document}
+
+\begin{tikzpicture}
+    \savebox\mysavebox{\includegraphics[width=.9\textwidth]{paper-1.png}}
+    \path [use as bounding box] rectangle (\wd\mysavebox, \ht\mysavebox);
+    \path [draw,clip] (0,0) -- (0.589\wd\mysavebox, 0) arc  (150:65:6.6cm)--(\wd\mysavebox, \ht\mysavebox)--(0, \ht\mysavebox) -- cycle;
+    \node [anchor=south west, inner sep=0pt, outer sep=0pt] at (0,0) {\usebox\mysavebox};
+\end{tikzpicture}
+
+\end{document}
