@@ -242,6 +242,9 @@ color=black!10!blue](75.2cm,-18cm)--(86cm,-18cm)--(86cm,-57cm)--(66.3cm,-57cm) a
      color = black!10!blue,
      font=\bfseries\fontsize{60}{10}\selectfont\color{blue}] at (67.5cm,-18cm) {OBJECTIVE};
 
+
+
+
 % \node[anchor=center, 
 % xshift = 0cm, 
 % align = justify,
@@ -253,12 +256,18 @@ color=black!10!blue](75.2cm,-18cm)--(86cm,-18cm)--(86cm,-57cm)--(66.3cm,-57cm) a
 % };
 
 
-
-% \node at (60cm,-37cm) {\includegraphics[scale=0.5]{}};
+\node[anchor=north east,xshift=-1.5cm,yshift=-18cm](str) at (current page.north east) {\includegraphics[width=0.3\textwidth]{figures/structure.pdf}};
 % \node(DIP) at (76cm,-45cm) {\includegraphics[scale=1.45]{}};
 
-% \node[anchor=center,font=\fontsize{18pt}{21.6}\selectfont,text width = 15cm]
-% at (DIP.north){Figura 2: Esquema de la formac\'on de los Dipolaritones \cite{cristof}};
+\node[anchor=north east,
+text width=6cm,scale=2.7, 
+align=justify,
+xshift=1.5cm,
+yshift=-1cm] at (str.north west)
+{In this work, the objective is to start the spin resolve RAS technique in samples of Coupled Quantum Wells, preferentially in the asymmetric samples, which they are possessing a $C_{2v}$ symmetry.};
+
+\node[anchor=north,scale=2.5,text width = 7cm]
+at (str.south){Figura 2: Sketch of Coupled Quantum Wells structures. };
 
 
 
@@ -276,10 +285,12 @@ color=black!10!blue](75.2cm,-18cm)--(86cm,-18cm)--(86cm,-57cm)--(66.3cm,-57cm) a
 
 \node[draw,
 	  rounded corners,
-	  inner sep = 10mm,
+	  inner sep = 2.5mm,
 	  line width = \lw,
 	  color = black!10!blue,
-      font=\bfseries\fontsize{60}{10}\selectfont\color{blue}] at (13.85cm,-60cm) {METODOLOGY};
+      scale=4.5,
+	  color=blue,
+	  font=\bfseries] at (13.85cm,-60cm) {METHODOLOGY};
 
 
 \node[anchor=north,
@@ -328,7 +339,7 @@ color=black!10!blue] (55.5cm,-80cm)--(56cm,-79.5cm)--(58cm,-79.5cm)--(58cm,-100c
 \draw[draw=none,
       blue,
       postaction={decorate},
-      decoration={text along path,text={|\bfseries\fontsize{60}{10}\selectfont\color{blue}\myshift|CONCLUSIONES},text align=center}]
+      decoration={text along path,text={|\bfseries\fontsize{60}{10}\selectfont\color{blue}\myshift|CONCLUTIONS},text align=center}]
 ([shift={(45cm,-64.85cm)}]240:17cm) arc [start angle=240,end angle=300,radius=17cm];
 
 % \node[font = \fontsize{30pt}{36}\selectfont,
@@ -352,11 +363,11 @@ color=black!10!blue] (55.5cm,-80cm)--(56cm,-79.5cm)--(58cm,-79.5cm)--(58cm,-100c
 \path[draw,
       rounded corners,
       line width = \lw,
-      color=black!10!blue] (60cm,-74.5cm)  arc  (-45:0:21cm)--(67.5cm,-59.5cm);
+      color=black!10!blue] (60cm,-74.5cm)  arc  (-45:0:21cm)--(70cm,-59.5cm);
 \draw[draw,
       rounded corners,
       line width =\lw,
-      color = black!10!blue] (84.5cm,-59.5cm)--(86cm,-59.5cm)--(86cm,-100cm)--(60cm,-100cm)--(60cm,-74.5cm);
+      color = black!10!blue] (82cm,-59.5cm)--(86cm,-59.5cm)--(86cm,-100cm)--(60cm,-100cm)--(60cm,-74.5cm);
 
 %\path[draw,line width = 0.5cm,color=black!60!green] (66cm,-59.5cm) -- (86cm,-59.5cm)--(86cm,-100cm)--(60.5cm,-100cm)--(60cm,-74.20cm);
 %%\path[draw,line width = 0.5cm,color=black!60!green] (60cm,-74.5cm) to[bend right](66cm,-59.5cm);
@@ -365,16 +376,17 @@ color=black!10!blue] (55.5cm,-80cm)--(56cm,-79.5cm)--(58cm,-79.5cm)--(58cm,-100c
 
 \node[draw,
       rounded corners,
-      inner sep = 6mm,
+      inner sep = 2.5mm,
       line width = \lw,
       color = black!10!blue,
-     font=\bfseries\fontsize{60}{10}\selectfont\color{blue}](RESUL) at (76cm,-59.5cm) {RESULTADOS};
+     scale=4.5,
+	 font=\bfseries](RESUL) at (76cm,-59.5cm) {RESULTS};
 
 
 
 
 
-\node[anchor=south east,xshift=-5cm,yshift=9cm](RAS) at (current page.south east){\includegraphics[width=0.25\textwidth]
+\node[anchor=south east,xshift=-5cm,yshift=10cm](RAS) at (current page.south east){\includegraphics[width=0.25\textwidth]
 	{figures/out/ras-set-1}};
 
 % \node[anchor = north,
