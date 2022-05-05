@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepgfplotslibrary{colormaps}
+
+\pgfplotsset{width=9.5cm, compat=1.17}
+\pgfplotsset{colormap/blackwhite}
+\begin{document}
+    \begin{tikzpicture}
+        \begin{axis}[
+            view={0}{90},
+			enlargelimits=false,
+			axis on top,
+            colorbar,
+            xlabel=$x ~(\mu m)$, ylabel=$y ~(\mu m)$, colorbar style={title=$Height$,ylabel=$nm$}
+            ]
+        \addplot3[surf, mesh/rows=6,mesh/ordering=x varies, shader=interp] table {afm.dat};
+        \end{axis}
+
+
+    \end{tikzpicture}
+\end{document}
